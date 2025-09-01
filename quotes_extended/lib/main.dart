@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'category.dart';
 import 'quote.dart';
-import 'quote_dart.dart';
+import 'quote_card.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -23,9 +24,34 @@ class _QuoteListState extends State<QuoteList> {
   //   'The truth is rarely pure and never simple'
   // ];
   List<Quote> quotes = [
-    Quote(author: 'Oscar Wilde', text: 'Be yourself; everyone else is already taken'),
-    Quote(author: 'Oscar Wilde', text: 'I have nothing to declare except my genius'),
-    Quote(author: 'Oscar Wilde', text: 'The truth is rarely pure and never simple')
+    // Misattributed, no evidence from Wilde’s lifetime.
+    Quote(
+        author: 'Oscar Wilde',
+        text: 'Be yourself; everyone else is already taken.',
+    ),
+    // 1882 (United States, New York Harbor)
+    // Reportedly spoken by Wilde to a customs officer when arriving in New York
+    // for his American lecture tour (January 1882).
+    Quote(
+        author: 'Oscar Wilde',
+        text: 'I have nothing to declare except my genius.',
+        category: Category(type: Category.location, description: 'New York Harbor'),
+        // {
+        //   Category.location: 'Location: New York Harbor'
+        // },
+        createdAt: DateTime(1882, 01, 15),
+    ),
+    // 1895
+    // From Wilde’s play The Importance of Being Earnest, Act I.
+    Quote(
+        author: 'Oscar Wilde',
+        text: 'The truth is rarely pure and never simple.',
+        category: Category(type: Category.play, description: 'The Importance of Being Earnest, Act I'),
+        // {
+        //   Category.play: 'The Importance of Being Earnest, Act I'
+        // },
+        createdAt: DateTime(1985),
+    )
   ];
 
   // Widget quoteTemplate(Quote quote) {
