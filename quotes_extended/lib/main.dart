@@ -36,9 +36,6 @@ class _QuoteListState extends State<QuoteList> {
         author: 'Oscar Wilde',
         text: 'I have nothing to declare except my genius.',
         category: Category(type: Category.location, description: 'New York Harbor'),
-        // {
-        //   Category.location: 'Location: New York Harbor'
-        // },
         createdAt: DateTime(1882, 01, 15),
     ),
     // 1895
@@ -47,16 +44,31 @@ class _QuoteListState extends State<QuoteList> {
         author: 'Oscar Wilde',
         text: 'The truth is rarely pure and never simple.',
         category: Category(type: Category.play, description: 'The Importance of Being Earnest, Act I'),
-        // {
-        //   Category.play: 'The Importance of Being Earnest, Act I'
-        // },
         createdAt: DateTime(1985),
     )
   ];
 
-  // Widget quoteTemplate(Quote quote) {
-  //   return QuoteCard(quote: quote); // no need to add `new` keyword here.
-  // }
+  // Handles deleting of the QuoteCard from the ListView.
+  // Prompts the user to confirm the deletion.
+  void handleQuoteCardDelete(Quote quote) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Delete quote?'),
+        content: const Text('This cannot be undone.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          ElevatedButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
+        ],
+      ),
+    ) ?? false;
+
+    if (ok) {
+      setState(() {
+        quotes.remove(quote);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +87,11 @@ class _QuoteListState extends State<QuoteList> {
       body: ListView.builder(
           itemCount: quotes.length,
           itemBuilder: (context, index) {
-            return QuoteCard(quote: quotes[index]);
+            Quote quote = quotes[index];
+            return QuoteCard(
+                quote: quote,
+                onDelete: () => handleQuoteCardDelete(quote),
+            );
           })
     );
   }
