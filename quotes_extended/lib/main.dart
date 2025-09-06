@@ -72,11 +72,11 @@ class _QuoteListState extends State<QuoteList> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      body: Column(
-        // quoteTemplate(quote)
-        // Text("${quote.text} - ${quote.author}")
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
-      ),
+      body: ListView.builder(
+          itemCount: quotes.length,
+          itemBuilder: (context, index) {
+            return QuoteCard(quote: quotes[index]);
+          })
     );
   }
 }
