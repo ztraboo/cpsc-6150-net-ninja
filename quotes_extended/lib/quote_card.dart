@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quotes/category_chip.dart';
 import 'quote.dart';
 import 'date_chip.dart';
+import 'reaction_list.dart';
 
 class QuoteCard extends StatelessWidget {
   // const QuoteCard({
@@ -51,6 +52,7 @@ class QuoteCard extends StatelessWidget {
                     : const SizedBox.shrink(), // empty widget if false
               ],
             ),
+            ReactionList()
           ],
         ),
       ),
