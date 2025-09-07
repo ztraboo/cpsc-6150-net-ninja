@@ -11,36 +11,36 @@ class CategoryChip extends StatelessWidget {
     required this.category
   });
 
-  IconData _iconForCategory(String categoryType) {
-    switch (categoryType) {
-      case Category.general:
+  IconData _iconForCategoryOrigin(CategoryOrigin categoryOrigin) {
+    switch (categoryOrigin) {
+      case CategoryOrigin.none:
         return Icons.add;
-      case Category.location:
+      case CategoryOrigin.location:
         return Icons.gps_fixed;
-      case Category.play:
+      case CategoryOrigin.publication:
         return Icons.description_outlined;
-      default:
-        return Icons.help_outline; // safe fallback
+      case CategoryOrigin.speech:
+        return Icons.location_history_sharp;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("${category.type}");
+    // print("${category.genre}, ${category.origin}, ${category.description}");
 
     return Chip(
       backgroundColor: Colors.grey.shade800,
       // Left icon inside the chip
       avatar: Icon(
-        _iconForCategory(category.type),
+        _iconForCategoryOrigin(category.origin),
         size: 18,
         color: Colors.grey.shade200,
       ),
       label: Text(
-        (category.type == Category.play) ? '"${category.description}"' : category.description,
+        (category.origin == CategoryOrigin.publication) ? '"${category.description}"' : category.description,
         style: TextStyle(
             color: Colors.grey.shade200,
-            fontStyle: (category.type == Category.play) ? FontStyle.italic : FontStyle.normal,
+            fontStyle: (category.origin == CategoryOrigin.publication) ? FontStyle.italic : FontStyle.normal,
         ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),

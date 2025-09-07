@@ -24,10 +24,19 @@ class _QuoteListState extends State<QuoteList> {
   //   'The truth is rarely pure and never simple'
   // ];
   List<Quote> quotes = [
-    // Misattributed, no evidence from Wilde’s lifetime.
+    // Recorded in The Analects (Book II, Chapter 17), a collection of sayings attributed to Confucius, compiled by his disciples.
     Quote(
-        author: 'Oscar Wilde',
-        text: 'Be yourself; everyone else is already taken.',
+      author: 'Confucius',
+      text: 'Real knowledge is to know the extent of one’s ignorance.',
+      category: Category(genre: CategoryGenre.general, origin: CategoryOrigin.publication, description: 'The Analects (Book II, Chapter 17)'),
+      historicalDate: "circa 5th century BCE",
+    ),
+    // 1965 (Commencement address at Oberlin College, Ohio)
+    Quote(
+      author: 'Martin Luther King Jr.',
+      text: 'The time is always right to do what is right.',
+      category: Category(genre: CategoryGenre.inspiration, origin: CategoryOrigin.location, description: 'Oberlin College'),
+      createdAt: DateTime(1965, 6, 23),
     ),
     // 1882 (United States, New York Harbor)
     // Reportedly spoken by Wilde to a customs officer when arriving in New York
@@ -35,17 +44,44 @@ class _QuoteListState extends State<QuoteList> {
     Quote(
         author: 'Oscar Wilde',
         text: 'I have nothing to declare except my genius.',
-        category: Category(type: Category.location, description: 'New York Harbor'),
+        category: Category(genre: CategoryGenre.humor, origin: CategoryOrigin.location, description: 'New York Harbor'),
         createdAt: DateTime(1882, 01, 15),
+    ),
+    // Misattributed, no evidence from Wilde’s lifetime.
+    Quote(
+        author: 'Oscar Wilde',
+        text: 'Be yourself; everyone else is already taken.',
+        category: Category(genre: CategoryGenre.inspiration)
     ),
     // 1895
     // From Wilde’s play The Importance of Being Earnest, Act I.
     Quote(
         author: 'Oscar Wilde',
         text: 'The truth is rarely pure and never simple.',
-        category: Category(type: Category.play, description: 'The Importance of Being Earnest, Act I'),
+        category: Category(genre: CategoryGenre.general, origin: CategoryOrigin.publication, description: 'The Importance of Being Earnest, Act I'),
         createdAt: DateTime(1985),
-    )
+    ),
+    // Often appears in speeches and interviews where Einstein reflected on perseverance during scientific struggles.
+    Quote(
+        author: 'Albert Einstein',
+        text: "In the middle of every difficulty lies opportunity.",
+        category: Category(genre: CategoryGenre.inspiration, origin: CategoryOrigin.speech, description: 'Speeches and Interviews')
+    ),
+    // From Twain’s lecture notes and later included in More Maxims of Mark Twain (published posthumously in 1927).
+    Quote(
+      author: 'Mark Twain',
+      text: 'Clothes make the man. Naked people have little or no influence on society.',
+      category: Category(genre: CategoryGenre.humor, origin: CategoryOrigin.publication, description: 'More Maxims of Mark Twain'),
+      createdAt: DateTime(1927),
+    ),
+    // 1748 Advice to a Young Tradesman
+    // A practical observation about economics and daily life.
+    Quote(
+      author: 'Benjamin Franklin',
+      text: 'Time is money.',
+      category: Category(genre: CategoryGenre.general, origin: CategoryOrigin.publication, description: 'Advice to a Young Tradesman'),
+      createdAt: DateTime(1748),
+    ),
   ];
 
   // Handles deleting of the QuoteCard from the ListView.
